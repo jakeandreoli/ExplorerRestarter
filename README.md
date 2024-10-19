@@ -1,6 +1,13 @@
 # ExplorerRestarter
 
-A simple C# application that monitors for a specific key combination (`Right Ctrl + Question Mark + Enter`) to restart the Windows Explorer process.
+A simple C# application that offers a quick and easy way to restart the Windows Explorer process.
+
+## How to Use
+
+- Restart Explorer - `Right Control + Enter + ?`
+- Move Mouse to Center of Screen - `Right Control + Enter + ;`
+
+Additionally, a system tray icon is available that allows you to restart the explorer process by right-clicking on the icon and selecting the "Restart Explorer" option.
 
 ## Motivation
 
