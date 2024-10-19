@@ -20,7 +20,13 @@ namespace ExplorerRestarter
             {
                 if (iconStream == null)
                 {
-                    MessageBox.Show("Icon resource not found. Exiting...", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(
+                        "Icon resource not found. Exiting...",
+                        "Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error
+                    );
+                    
                     Application.Exit();
                     return;
                 }

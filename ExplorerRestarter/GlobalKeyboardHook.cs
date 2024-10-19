@@ -46,7 +46,12 @@ namespace ExplorerRestarter
                     return IntPtr.Zero;
                 }
                 
-                return SetWindowsHookEx(WH_KEYBOARD_LL, proc, GetModuleHandle(curModule.ModuleName), 0);
+                return SetWindowsHookEx(
+                    WH_KEYBOARD_LL, 
+                    proc, 
+                    GetModuleHandle(curModule.ModuleName), 
+                    0
+                );
             }
         }
 
