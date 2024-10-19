@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace ExplorerRestarter
 {
-    public class ExplorerHandler
+    public static class ExplorerHandler
     {
         /**
          * Reset the mouse cursor to the center of the screen.
