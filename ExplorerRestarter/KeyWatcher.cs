@@ -9,7 +9,7 @@ namespace ExplorerRestarter
     public class KeyWatcher
     {
         private Dictionary<HashSet<Keys>, Action> _keyCommands = new Dictionary<HashSet<Keys>, Action>(HashSetComparer<Keys>.Default);
-        private HashSet<Keys> _heldKeys = new HashSet<Keys>();
+        private readonly HashSet<Keys> _heldKeys = new HashSet<Keys>();
         
         public KeyWatcher()
         {
