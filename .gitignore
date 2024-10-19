@@ -1,0 +1,22 @@
+# Ignore Visual Studio temporary files, build results, and Rider settings
+bin/
+obj/
+.vscode/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+
+# Ignore NuGet packages
+*.nupkg
+packages/
+
+# Ignore build logs and lock files
+project.lock.json
+project.fragment.lock.json
+*.log
+
+# Ignore other temporary files
+~$*
+*.tmp
