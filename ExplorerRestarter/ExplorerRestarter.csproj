@@ -14,6 +14,7 @@
         <FileAlignment>512</FileAlignment>
         <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
         <ApplicationIcon>Resources\icon.ico</ApplicationIcon>
+        <LangVersion>11</LangVersion>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
         <PlatformTarget>x64</PlatformTarget>
@@ -43,6 +44,9 @@
         <Reference Include="System.Xml"/>
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="CommandLoader.cs" />
+        <Compile Include="Data\Command.cs" />
+        <Compile Include="Data\Instruction.cs" />
         <Compile Include="ExplorerHandler.cs" />
         <Compile Include="GlobalKeyboardHook.cs" />
         <Compile Include="KeyWatcher.cs" />

@@ -5,13 +5,14 @@ namespace ExplorerRestarter.Utilities
 {
     public class HashSetComparer<T> : IEqualityComparer<HashSet<T>>
     {
+        private const int DefaultHashSeed = 19;
         public static readonly HashSetComparer<T> Default = new HashSetComparer<T>();
 
         public bool Equals(HashSet<T> x, HashSet<T> y) => x.SetEquals(y);
 
         public int GetHashCode(HashSet<T> obj)
         {
-            int hash = 19;
+            int hash = DefaultHashSeed;
             
             foreach (var item in obj)
             {

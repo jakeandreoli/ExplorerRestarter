@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows.Forms;
+using ExplorerRestarter.Data;
 
 namespace ExplorerRestarter
 {
@@ -47,6 +48,45 @@ namespace ExplorerRestarter
             catch (Exception e)
             {
                 MessageBox.Show(e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        
+        public static void RunCommand(List<Instruction> instructions)
+        {
+            foreach (Instruction i in instructions)
+            {
+                try
+                {
+                    using (var process = new Process())
+                    {
+                        string command = i.Command;
+                        command = command.Replace("\n", " && ");
+                        command = command.Replace("{localappdata}", Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData));
+                        command = command.Replace("{appdata}", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData));
+                        
+#if DEBUG
+                        Console.WriteLine($"Running command: {command}");
+#endif
+                        
+                        process.StartInfo = new ProcessStartInfo
+                        {
+                            FileName = "cmd.exe",
+                            Arguments = "/c " + command,
+                            UseShellExecute = false,
+                            RedirectStandardOutput = true,
+                            RedirectStandardError = true,
+                            CreateNoWindow = true,
+                            WindowStyle = ProcessWindowStyle.Hidden
+                        };
+
+                        process.Start();
+                        process.WaitForExit();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Exception: {ex.Message}");
+                }
             }
         }
     }

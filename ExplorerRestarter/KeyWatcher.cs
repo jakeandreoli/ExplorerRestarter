@@ -13,9 +13,10 @@ namespace ExplorerRestarter
         
         public KeyWatcher()
         {
+            var hook = new GlobalKeyboardHook();
+            
             this.InstantiateDefaultKeyBindings();
             
-            var hook = new GlobalKeyboardHook();
             
             hook.KeyDown += (sender, e) =>
             {
@@ -36,7 +37,7 @@ namespace ExplorerRestarter
             foreach (HashSet<Keys> keyCombo in this._keyCommands.Keys.Where(keyCombo => keyCombo.IsSubsetOf(this._heldKeys)))
             {
                 this._keyCommands[keyCombo].Invoke();
-                break;
+                break;;
             }
         }
         
@@ -44,8 +45,7 @@ namespace ExplorerRestarter
         {
             this._keyCommands = new Dictionary<HashSet<Keys>, Action>(HashSetComparer<Keys>.Default)
             {
-                {
-                    // Restart Explorer - Right Control + Enter + ?
+                { // Restart Explorer - Right Control + Enter + ?
                     new HashSet<Keys>
                     {
                         Keys.RControlKey, 
@@ -54,8 +54,7 @@ namespace ExplorerRestarter
                     },
                     ExplorerHandler.Restart
                 },
-                {
-                    // Reset mouse cursor - Right Control + Enter + ;
+                { // Reset mouse cursor - Right Control + Enter + ;
                     new HashSet<Keys>
                     {
                         Keys.RControlKey, 
@@ -65,6 +64,6 @@ namespace ExplorerRestarter
                     ExplorerHandler.ResetMouseCursor
                 }
             };
-        } 
+        }
     }
 }

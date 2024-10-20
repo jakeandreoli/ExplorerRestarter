@@ -2,12 +2,18 @@
 
 A simple C# application that offers a quick and easy way to restart the Windows Explorer process.
 
+## Features
+
+- Restart Explorer - Restarts the Windows Explorer process.
+- Move Mouse to Center of Screen - Moves the mouse cursor to the center of the screen.
+- Customizable Commands - Setup commands to run from the system tray icon.
+
 ## How to Use
 
 - Restart Explorer - `Right Control + Enter + ?`
 - Move Mouse to Center of Screen - `Right Control + Enter + ;`
 
-Additionally, a system tray icon is available that allows you to restart the explorer process by right-clicking on the icon and selecting the "Restart Explorer" option.
+Additionally, a system tray icon is available that allows you to restart the explorer process by either double-clicking the icon or right-clicking on the icon and selecting the "Restart Explorer" option.
 
 ## Motivation
 
@@ -21,6 +27,7 @@ There are other solutions out there that do the same thing, but I wanted to make
 1. **Visual Studio** 2019 or later with:
     - **.NET Desktop Development** workload
 2. **.NET Framework 4.8**
+3. C# 11.0 or later
 
 ```bash
 git clone https://github.com/jakeandreoli/ExplorerRestarter.git
