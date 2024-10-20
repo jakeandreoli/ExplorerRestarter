@@ -19,7 +19,9 @@ namespace ExplorerRestarter
             
             using (Stream iconStream = Assembly
                        .GetExecutingAssembly()
-                       .GetManifestResourceStream("ExplorerRestarter.Resources.icon.ico")
+                       .GetManifestResourceStream("ExplorerRestarter.Resources.icon" 
+                                                  + (Utilities.SystemConfiguration.DarkTheme() ? "-light" : "")
+                                                  + ".ico")
                   )
             {
                 if (iconStream == null)
@@ -42,13 +44,14 @@ namespace ExplorerRestarter
                 };
             }
             
+            this._icon.Text = "Explorer Restarter";
             this._icon.DoubleClick += (sender, args) => ExplorerHandler.Restart();
             
             this._commandLoader.LoadCommands();
             this.CreateContextMenu();
         }
 
-        public void CreateContextMenu()
+        private void CreateContextMenu()
         {
             var menu = new ContextMenu();
 
