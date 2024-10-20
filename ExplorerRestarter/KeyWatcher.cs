@@ -37,7 +37,7 @@ namespace ExplorerRestarter
             foreach (HashSet<Keys> keyCombo in this._keyCommands.Keys.Where(keyCombo => keyCombo.IsSubsetOf(this._heldKeys)))
             {
                 this._keyCommands[keyCombo].Invoke();
-                break;;
+                break;
             }
         }
         

@@ -19,9 +19,11 @@ namespace ExplorerRestarter
             
             using (Stream iconStream = Assembly
                        .GetExecutingAssembly()
-                       .GetManifestResourceStream("ExplorerRestarter.Resources.icon" 
-                                                  + (Utilities.SystemConfiguration.DarkTheme() ? "-light" : "")
-                                                  + ".ico")
+                       .GetManifestResourceStream(
+                           "ExplorerRestarter.Resources.icon" 
+                                + (Utilities.SystemConfiguration.DarkTheme() ? "-light" : "")
+                                + ".ico"
+                       )
                   )
             {
                 if (iconStream == null)
@@ -86,17 +88,20 @@ namespace ExplorerRestarter
             
             menu.MenuItems.Add(reloadCommandsItem);
             
-            // About
-            var aboutItem = new MenuItem("About");
-            aboutItem.Click += (sender, args) => Process.Start("https://github.com/jakeandreoli/ExplorerRestarter");
-
-            menu.MenuItems.Add(aboutItem);
-            
             // Open Folder containing this executable
             var openFolderItem = new MenuItem("Open Folder");
             openFolderItem.Click += (sender, args) => Process.Start(Directory.GetCurrentDirectory());
             
             menu.MenuItems.Add(openFolderItem);
+            
+            // Separator
+            menu.MenuItems.Add(new MenuItem("-"));
+            
+            // About
+            var aboutItem = new MenuItem("About");
+            aboutItem.Click += (sender, args) => Process.Start("https://github.com/jakeandreoli/ExplorerRestarter");
+
+            menu.MenuItems.Add(aboutItem);
 
             // Exit
             var exitItem = new MenuItem("Exit");
