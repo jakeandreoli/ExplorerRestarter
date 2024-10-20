@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Commands>
+    <Command Name="Restart StreamDeck">
+        <!-- Instructions are executed in order, each in a separate console -->
+        <!-- Multi-step instructions are separated by "&&" -->
+        <!-- Alternatively, you can use "CALL" to run a batch file -->
+        <Instruction>taskkill /IM StreamDeck.exe /F</Instruction>
+        <Instruction>C: &amp;&amp; cd "C:\Program Files\Elgato\StreamDeck" &amp;&amp; start StreamDeck.exe</Instruction>
+    </Command>
+</Commands>
