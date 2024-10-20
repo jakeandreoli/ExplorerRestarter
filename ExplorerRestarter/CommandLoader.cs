@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Xml;
 using System.Windows.Forms;
@@ -9,6 +10,16 @@ namespace ExplorerRestarter
     public class CommandLoader
     {
         public List<Data.Command> Commands = new List<Data.Command>();
+        private FileSystemWatcher _watcher;
+        private System.Timers.Timer _debounceTimer;
+        
+        public event EventHandler FileChanged;
+        
+        public CommandLoader()
+        {
+            this.LoadCommands();
+            this.StartFileWatcher();
+        }
 
         private List<Data.Instruction> LoadInstructions(XmlElement node)
         {
@@ -127,6 +138,42 @@ namespace ExplorerRestarter
                         break;
                 }
             }
+        }
+
+        private void StartFileWatcher()
+        {
+            string path = Path.Combine(Directory.GetCurrentDirectory(), "Commands.xml");
+
+            if (!File.Exists(path))
+            {
+                return;
+            }
+
+            this._watcher = new FileSystemWatcher
+            {
+                Path = Directory.GetCurrentDirectory(),
+                Filter = "Commands.xml",
+                NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.Size
+            };
+
+            this._debounceTimer = new System.Timers.Timer(500); // 500ms debounce period
+            this._debounceTimer.AutoReset = false;
+            this._debounceTimer.Elapsed += (sender, args) =>
+            {
+                this.LoadCommands();
+                this.FileChanged?.Invoke(this, EventArgs.Empty);
+            };
+
+            this._watcher.Changed += (sender, args) =>
+            {
+                if (this._debounceTimer.Enabled)
+                {
+                    this._debounceTimer.Stop();
+                }
+                this._debounceTimer.Start();
+            };
+
+            this._watcher.EnableRaisingEvents = true;
         }
     }
 }

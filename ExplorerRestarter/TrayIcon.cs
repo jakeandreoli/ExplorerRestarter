@@ -49,8 +49,9 @@ namespace ExplorerRestarter
             this._icon.Text = "Explorer Restarter";
             this._icon.DoubleClick += (sender, args) => ExplorerHandler.Restart();
             
-            this._commandLoader.LoadCommands();
             this.CreateContextMenu();
+            
+            this._commandLoader.FileChanged += (sender, args) => this.CreateContextMenu();
         }
 
         private void CreateContextMenu()
