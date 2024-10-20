@@ -26,15 +26,23 @@ namespace ExplorerRestarter
                     case "Instruction":
                         var name = "Unknown Instruction";
 
-                        if (element.HasAttribute("name"))
+                        if (element.HasAttribute("Name"))
                         {
-                            name = element.GetAttribute("name");
+                            name = element.GetAttribute("Name");
+                        }
+
+                        var standalone = false;
+                        
+                        if (element.HasAttribute("Standalone"))
+                        {
+                            standalone = bool.Parse(element.GetAttribute("Standalone"));
                         }
 
                         instructions.Add(new Data.Instruction
                         {
                             Name = name,
-                            Command = childNode.InnerText
+                            Command = childNode.InnerText,
+                            Standalone = standalone
                         });
                         break;
                 }

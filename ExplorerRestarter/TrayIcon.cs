@@ -70,6 +70,19 @@ namespace ExplorerRestarter
                     var commandItem = new MenuItem(command.Name);
                     commandItem.Click += (sender, args) => ExplorerHandler.RunCommand(command.Instructions);
                     
+                    foreach (Data.Instruction instruction in command.Instructions)
+                    {
+                        if (!instruction.Standalone)
+                        {
+                            continue;
+                        }
+                        
+                        var instructionItem = new MenuItem(instruction.Name);
+                        instructionItem.Click += (sender, args) => ExplorerHandler.RunInstruction(instruction);
+                        
+                        commandItem.MenuItems.Add(instructionItem);
+                    }
+                    
                     menu.MenuItems.Add(commandItem);
                 }
             }

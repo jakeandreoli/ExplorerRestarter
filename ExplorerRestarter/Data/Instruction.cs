@@ -4,5 +4,7 @@
     {
         public string Name { get; set; }
         public string Command { get; set; }
+        
+        public bool Standalone { get; set; }
     }
 }
