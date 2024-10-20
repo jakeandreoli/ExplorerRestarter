@@ -54,9 +54,13 @@
         <Compile Include="Properties\AssemblyInfo.cs"/>
         <Compile Include="TrayIcon.cs" />
         <Compile Include="Utilities\HashSetComparer.cs" />
+        <Compile Include="Utilities\SystemConfiguration.cs" />
     </ItemGroup>
     <ItemGroup>
+      <EmbeddedResource Include="Resources\icon-light.ico" />
       <EmbeddedResource Include="Resources\icon.ico" />
+    </ItemGroup>
+    <ItemGroup>
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
