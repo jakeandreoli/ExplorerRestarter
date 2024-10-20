@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ExplorerRestarter.Utilities
 {
@@ -10,16 +11,9 @@ namespace ExplorerRestarter.Utilities
 
         public bool Equals(HashSet<T> x, HashSet<T> y) => x.SetEquals(y);
 
-        public int GetHashCode(HashSet<T> obj)
-        {
-            int hash = DefaultHashSeed;
-            
-            foreach (var item in obj)
-            {
-                hash = hash * 31 + item.GetHashCode();
-            }
-            
-            return hash;
-        }
+        public int GetHashCode(HashSet<T> obj) => obj.Aggregate(
+            DefaultHashSeed, 
+            (hash, item) => hash * 31 + item.GetHashCode()
+        );
     }
 }
